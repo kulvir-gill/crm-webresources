@@ -1,0 +1,36 @@
+{
+  "folders": [{ "name": "CRM Web Resources", "path": "." }],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+    "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "eslint.useFlatConfig": true,
+    "eslint.validate": ["javascript"],
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "files.eol": "\n",
+    "search.exclude": { "dist": true, "node_modules": true }
+  },
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      { "label": "build", "type": "npm", "script": "build", "group": { "kind": "build", "isDefault": true } },
+      { "label": "watch", "type": "npm", "script": "watch", "isBackground": true, "problemMatcher": [] },
+      { "label": "lint", "type": "npm", "script": "lint", "problemMatcher": ["$eslint-stylish"] },
+      { "label": "deploy all", "type": "npm", "script": "deploy", "problemMatcher": [] },
+      {
+        "label": "deploy current file",
+        "type": "shell",
+        "command": "npm run build && node scripts/deploy.mjs \"${relativeFile}\"",
+        "problemMatcher": []
+      }
+    ]
+  }
+}
